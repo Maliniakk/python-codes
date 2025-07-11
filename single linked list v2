@@ -1,0 +1,47 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class LinkedList:
+    def __init__(self,data=None):
+        self.head = None
+        if data != None:
+            self.head = Node(data)
+
+    def add(self,data):
+        if self.head is None:
+            self.head=Node(data)
+        else:
+            newnode=Node(data)
+            cur = self.head
+            while True:
+                if cur.next is None:
+                    cur.next=newnode
+                    break
+                cur=cur.next
+    def remove(self,data):
+        if data == self.head.data:
+            self.head = self.head.next
+        else:
+            cur = self.head
+            while cur.data != data:
+                prev = cur
+                cur=cur.next
+            curr=prev
+            curr.next=cur.next
+
+    def print(self):
+        cur = self.head
+        while cur is not None:
+            print(cur.data,end='->')
+            cur=cur.next
+        print(None)
+
+list=LinkedList()
+list.add(1)
+list.add(2)
+list.add(3)
+list.add(4)
+list.remove(3)
+list.print()
